@@ -47,6 +47,14 @@ if not get_option('disable_gst_libav')
     subprojects += gst_libav
 endif
 
+if not get_option('disable_gstreamer_vaapi')
+  if dependency('libva', version: '>= 0.30.4', required : false).found()
+    subprojects += ['gstreamer-vaapi']
+  else
+    message('WARNING: not building gstreamer-vaapi module, missing libva')
+  endif
+endif
+
 if not get_option('disable_gst_devtools')
   if dependency('json-glib-1.0', required : false).found()
     subprojects += ['gst-devtools']
