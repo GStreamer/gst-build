@@ -41,6 +41,21 @@ at the root of `gst-build/` for example GStreamer core will be in `gstreamer/`. 
 they will be present in `subprojects/`. You can simply hack in there and to rebuild you
 just need to rerun `ninja -C build/`.
 
+## Custom subprojects
+
+We also added a meson option, 'custom_subprojects', that allows the user
+to provide a comma-separated list of subprojects that should be built
+alongside the default ones.
+
+To use it:
+
+```
+cd subprojects
+git clone my_subproject
+cd ../build
+rm -rf * && meson .. -Dcustom_subprojects=my_subproject
+ninja
+```
 
 ## Add information about GStreamer development environment in your prompt line
 
